@@ -5,11 +5,6 @@ function Main() {
     <div className=' relative'>
       <Navbar/>
       <First_LandingComponent/>
-      <div className="h-screen justify-center items-center">
-        <h1>
-
-        </h1>
-      </div>
     </div>
   )
 }

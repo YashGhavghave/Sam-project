@@ -10,7 +10,7 @@ const visible = ()=>{
 }
   return (
     <div className='flex  '>
-      <div className='absolute h-16 w-[80%] text-black bg-slate-300 rounded-r-full  flex font-sans justify-evenly items-center top-6'>
+      <div className='absolute h-16 w-[80%] text-black bg-slate-200 rounded-r-full  flex font-sans justify-evenly items-center top-6'>
         <Link to="/main" className='flex text-purple-600 text-4xl font-sans'> Student <h1 className=' flex bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent'>Nest</h1></Link>
         {/* <span>Home</span> */}
         <Link to='/room' className='text-lg hover:scale-105 transition-all ease-out duration-200'>Get Room</Link>
@@ -19,7 +19,7 @@ const visible = ()=>{
         <Link to='/connectus' className='text-lg hover:scale-105 transition-all ease-out duration-200'>Connect Us</Link>
       </div>
       <button onClick={visible} className='absolute h-auto flex font-sans  top-9 right-10'>
-        <PersonIcon style={{ fontSize: 35, color: 'black' }}/>
+        <PersonIcon style={{ fontSize: 30, color: 'black' }}/>
       </button>
       {/* <button className='absolute h-auto flex font-sans  top-9 right-27'>
         <DarkMode style={{ fontSize: 35 }}

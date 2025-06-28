@@ -1,15 +1,12 @@
 import Navbar from '../LandingPage/PageComponents/Navbar'
+import Cards from './PageComponents/Cards'
 
 function RoomsPage() {
   return (
     <div>
       <Navbar/>
-      <div className='flex justify-center items-center text-4xl h-screen'>
-        <h1>
+      <Cards/>
 
-        Its an Room
-        </h1>
-      </div>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import image from '../assets/full-shot-ninja-wearing-equipment.jpg'
+// import image from '../assets/full-shot-ninja-wearing-equipment.jpg'
 
 function Login() {
 
@@ -14,11 +14,11 @@ function Login() {
     try {
       const res = axios.post('http://localhost:3000/', {
         user, pass
-      },
-    )
-    if (!user || !pass) {
-      return alert("User and Password are required")
-    }
+      }
+      )
+      if (!user || !pass) {
+        return alert("User and Password are required")
+      }
       return res
     }
     catch (err) {
@@ -96,42 +96,48 @@ function Login() {
   const NewUser = () => {
     NewUserNavigate('/register')
   }
-  return (<div className="relative h-[100vh] w-full overflow-hidden">
+  return (<div className="relative h-[100vh] w-full overflow-hidden bg-gradient-to-tr from-orange-600 via-white to-white">
     {/* Blurred Background Image */}
     <div
-      style={{ backgroundImage: `url(${image})` }}
-      className="absolute inset-0 bg-cover bg-center z-0"
+      className="absolute inset-0 bg-cover bg-center z-0 flex-col"
     />
 
     {/* Foreground Form */}
-    <div className="relative z-10 flex items-center  h-full">
+    <div className="absolute z-10 flex items-center  h-full ">
       <form
         onSubmit={Hander}
-        className=" w-[30vw] h-[96vh] flex flex-col justify-center items-center backdrop-blur-3xl rounded-r-full shadow-2xl gap-10 overflow-hidden"
+        className=" w-[30vw] h-[60vh] flex flex-col justify-center items-center relative left-30 backdrop-blur-2xl rounded-2xl shadow-2xl gap-10 overflow-hidden"
       >
-        <h1 className="text-4xl text-white text-bold">Login</h1>
+        <h1 className="text-4xl text-black text-bold">Log in</h1>
         <input
           type="text"
           placeholder="Username"
           value={user}
           onChange={(e) => setuser(e.target.value)}
-          className="p-2 border-blue-400 rounded-lg w-[80%] bg-amber-50"
+          className="p-2 border-blue-400 rounded-lg w-[80%] bg-white"
         />
         <input
           type="password"
           placeholder="Password"
           value={pass}
           onChange={(e) => setpass(e.target.value)}
-          className="p-2 border-blue-400 rounded-lg w-[80%] bg-amber-50"
+          className="p-2 border-blue-400 rounded-lg w-[80%] bg-white"
         />
-        <button onClick={NewUser} className='hover:text-blue-400 relative left-35 text-white'>New User --</button>
+        <button onClick={NewUser} className='hover:text-blue-400 relative left-35 text-black'>New User --</button>
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-red-500 text-white px-[5vw] py-4 rounded-full"
-        >
-          Submit
+          className="backdrop-blur-lg bg-white shadow-2xl hover:bg-orange-400 text-black hover:text-white px-[5vw] py-2 rounded-full"
+        >Submit
         </button>
       </form>
+    </div>
+
+    <div className='flex flex-col gap-3 absolute right-10 h-full justify-center items-center w-[50vw]'>
+
+      <div className=' flex  text-purple-600 text-8xl font-sans'> Student <h1 className=' flex bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent'>Nest,</h1>
+      </div>
+      <div className='text-slate-500  text-4xl left-0'>Welcome You
+      </div>
     </div>
   </div>
 
