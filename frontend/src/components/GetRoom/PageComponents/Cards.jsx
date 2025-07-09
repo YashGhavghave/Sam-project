@@ -21,7 +21,7 @@ function Cards() {
     return ListContent.map((name, index) => (
       <Link to={`/character/${index}`}
         key={index}
-        className='h-[300px] w-[400px] rounded-2xl bg-slate-200 hover:scale-105 transition-all duration-300 ease-out shadow-lg overflow-hidden'
+        className='relative h-[300px] w-[400px] rounded-2xl bg-slate-200 hover:scale-105 transition-all duration-300 ease-out shadow-lg overflow-hidden'
       >
         <img
           src={ImageUrl[index]}
