@@ -1,4 +1,3 @@
-import Login from "../components/login";
 import axios from 'axios'
 
 export const LoginHandler = async ( user, pass)=>{

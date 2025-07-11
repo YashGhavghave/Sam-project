@@ -1,7 +1,10 @@
-import { Router } from "express";
+import express from 'express'
+import DataModelSchema from '../Data_model/userdatamodel.data_model.js';
+
+let router = express.Router()
 
 
-Router.post("/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   const { user, pass } = req.body;
 
   try {
@@ -11,11 +14,14 @@ Router.post("/register", async (req, res) => {
     }
 
     const newUser = await DataModelSchema.create({ user, pass });
-    console.log("✅ User registered:", newUser.user);
+    console.log(" User registered:", newUser.user);
 
     res.status(201).json({ message: "Registration Successful" });
   } catch (err) {
-    console.error("❌ Registration error:", err);
+    console.error(" Registration error:", err);
     res.status(500).json({ message: "Registration Failed" });
   }
 });
+
+
+export default router;

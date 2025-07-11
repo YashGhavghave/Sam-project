@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import  {hover, motion}  from "motion/react";
+import Landing2 from "./PageComponents/Landing2";
 
 import Navbar from "./PageComponents/Navbar";
 import First_LandingComponent from "./PageComponents/First_LandingComponent";
@@ -13,7 +15,7 @@ function Main() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/profile", {
+        const res = await axios.get("http://localhost:3000/profile", {
           withCredentials: true, // Important to send cookie
         });
 
@@ -29,24 +31,50 @@ function Main() {
     fetchProfile();
   }, [navigate]);
 
-  if (loading) return <div className="p-10">Loading your profile...</div>;
+  if (loading) return <div className="p-10 flex justify-evenly items-center  text-3xl font-medium">Loading...</div>;
 
   return (
-    <div className="relative min-h-screen bg-gray-100">
+    <div className="relative min-h-screen ">
       <Navbar />
 
-      <div className="p-10 max-w-xl mx-auto shadow-lg bg-white rounded-xl mt-10">
-        <h1 className="text-3xl font-bold text-purple-700 mb-4">
-          Welcome, {userData?.user}!
-        </h1>
-        <p className="text-gray-600 mb-2">
-          <strong>User ID:</strong> {userData?.user}
-        </p>
-        {/* Add more profile details here if needed */}
-      </div>
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
+  className="absolute top-[30vh] left-10 md:left-30 max-w-3xl ">
+  <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-800 leading-tight mb-4 w-[30vw]">
+    Hello, <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
+      {userData?.user}
+    </span>
+  </h1>
 
-      <div className="mt-10">
+  <p className="text-lg sm:text-xl text-gray-600 font-medium w-[35vw]">
+    Welcome to{' '}
+    <span className="text-orange-500 font-semibold">Student Nest</span> —
+    the best place to find study-ready living spaces!
+  </p>
+
+  <p className="text-gray-500 mt-2 text-sm sm:text-base font-mono w-[45vw]">
+    Discover PGs, hostels, flats, or co-living rooms designed for engineering students and faculty.
+  </p>
+</motion.div>
+
+<div className="h-[30vh] w-[40vw] bg-orange-200 absolute top-[28rem] left-[8.3rem] border-none flex justify-evenly items-center shadow-xl/20 rounded-2xl flex-col text-2xl font-normal ">
+    <p className="text-lg sm:text-xl text-gray-600 font-medium w-[35vw]">
+    Welcome to{' '}
+    <span className="text-orange-500 font-semibold">Student Nest</span>
+  <h1 className="text-sm text-gray-600 font-medium">   ---- We are hear to make you easy....</h1>
+  </p>
+  <input type="text" className="w-[30vw] h-[4vh] p-4 text-lg rounded-full border-1 outline-none" placeholder="Search "/>
+  <button className="px-10 text-lg font-normal bg-orange-500 rounded-full text-white py-0.5">Search</button>
+</div>
+
+
+      <div className="">
         <First_LandingComponent />
+      </div>
+      <div>
+        <Landing2/>
       </div>
     </div>
   );

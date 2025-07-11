@@ -1,5 +1,3 @@
-import React from 'react'
-import RegisterPageImage from '../../assets/car-1281698_1920.jpg'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
@@ -9,6 +7,8 @@ import { useState } from 'react'
 function RegistrationForm() {
 
 
+
+  
   const RegistrationFromHandler = (user, pass) => {
     try {
       const Response = axios.post('http://localhost:3000/register', {
@@ -38,6 +38,8 @@ function RegistrationForm() {
         alert('Error Occur')
       )
     } catch (err) {
+      let msg = err.response?.data?.message||"Check the Credentials"
+      alert(msg)
       console.log(err)
     }
   }
