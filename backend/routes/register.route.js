@@ -5,16 +5,16 @@ let router = express.Router()
 
 
 router.post("/register", async (req, res) => {
-  const { user, pass } = req.body;
+  const { firstname, lastname, email, pass } = req.body;
 
   try {
-    const existingUser = await DataModelSchema.findOne({ user });
+    const existingUser = await DataModelSchema.findOne({ email });
     if (existingUser) {
       return res.status(409).json({ message: "User already exists" });
     }
 
-    const newUser = await DataModelSchema.create({ user, pass });
-    console.log(" User registered:", newUser.user);
+    const newUser = await DataModelSchema.create({ firstname, lastname, email, pass });
+    console.log(" User registered:", newUser.email);
 
     res.status(201).json({ message: "Registration Successful" });
   } catch (err) {

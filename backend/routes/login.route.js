@@ -6,10 +6,10 @@ const router = express.Router()
 
 
 router.post("/login", async (req, res) => {
-  const { user, pass } = req.body;
+  const {email, pass } = req.body;
 
   try {
-    const existingUser = await DataModelSchema.findOne({ user });
+    const existingUser = await DataModelSchema.findOne({ email });
 
     if (!existingUser) {
       return res.status(400).json({ message: "User Not Found" });
@@ -19,7 +19,7 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid Password" });
     }
 
-    const token = TokenGeneration(existingUser._id, existingUser.user);
+    const token = TokenGeneration(existingUser._id, existingUser.email);
 
     res.cookie("token", token, {
       // path: '/',

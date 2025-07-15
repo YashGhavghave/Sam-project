@@ -11,7 +11,7 @@ const verifyUser = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRATE_KEY);
-    req.user = decoded;
+    req.email = decoded;
     next();
   } catch (err) {
     return res.status(403).json({ message: "Invalid token" });
@@ -20,9 +20,9 @@ const verifyUser = (req, res, next) => {
 
 router.get("/profile", verifyUser, async (req, res) => {
   try {
-    const user = await DataModelSchema.findById(req.user.id).select("-pass");
-    if (!user) return res.status(404).json({ message: "User not found" });
-    res.status(200).json({ user });
+    const email = await DataModelSchema.findById(req.email.id).select("-pass");
+    if (!email) return res.status(404).json({ message: "User not found" });
+    res.status(200).json({ email });
   } catch (err) {
     res.status(500).json({ message: "Failed to fetch user" });
   }

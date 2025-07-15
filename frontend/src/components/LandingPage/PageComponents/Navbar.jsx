@@ -1,5 +1,4 @@
-'use client'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import PersonIcon from '@mui/icons-material/Person'
@@ -8,9 +7,38 @@ export default function Navbar() {
   const [userBox, setUserBox] = useState(false)
   const [setting, setSetting] = useState(false)
   const navigate = useNavigate()
+  
+  // Create refs for the elements you want to detect clicks outside of
+  const userBoxRef = useRef(null)
+  const settingRef = useRef(null)
 
   const toggleUserBox = () => setUserBox(!userBox)
   const toggleSettings = () => setSetting(!setting)
+
+  // Handle click outside for both userBox and settings
+  useEffect(() => {
+    function handleClickOutside(event) {
+      // Close userBox if clicked outside
+      if (userBoxRef.current && !userBoxRef.current.contains(event.target)) {
+        setUserBox(false)
+      }
+      
+      // Close settings if clicked outside
+      if (settingRef.current && !settingRef.current.contains(event.target)) {
+        setSetting(false)
+      }
+    }
+
+    // Add event listener when either is open
+    if (userBox || setting) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [userBox, setting])
 
   const handleLogout = async () => {
     await fetch('http://localhost:3000/api/logout', {
@@ -66,6 +94,7 @@ export default function Navbar() {
         <AnimatePresence>
           {userBox && (
             <motion.div
+              ref={userBoxRef}
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -93,16 +122,17 @@ export default function Navbar() {
       <AnimatePresence>
         {setting && (
           <motion.div
+            ref={settingRef}
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 80 }}
-            className="fixed top-0 right-0 h-full w-[80vw] max-w-xl bg-amber-200 p-6 shadow-2xl z-40"
+            className="fixed top-0 right-0 h-full w-[80vw] max-w-xl bg-amber-200 p-6 shadow-2xl z-40 rounded-l-2xl"
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold text-gray-800">Settings Panel</h2>
               <button
-                onClick={toggleSettings}
+                onClick={() => setSetting(false)}
                 className="text-gray-600 hover:text-black"
               >
                 ✕
@@ -115,4 +145,4 @@ export default function Navbar() {
       </AnimatePresence>
     </motion.nav>
   )
-}
+} 

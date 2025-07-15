@@ -3,12 +3,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [user, setUser] = useState('');
+  const [email, setemail] = useState('');
   const [pass, setPass] = useState('');
   const navigate = useNavigate();
 
-  const LoginHandler = async (user, pass) => {
-    if (!user || !pass) {
+  const LoginHandler = async (email, pass) => {
+    if (!email || !pass) {
       alert("User and Password are required");
       return null;
     }
@@ -16,7 +16,7 @@ function Login() {
     try {
       const res = await axios.post(
         'http://localhost:3000/login', // make sure backend route matches
-        { user, pass },
+        { email, pass },
         {
           withCredentials: true, // for cookie-based auth
         }
@@ -31,7 +31,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await LoginHandler(user, pass);
+    const res = await LoginHandler(email, pass);
     if (res && res.status === 200) {
       // Optional: store token if backend sends it in response
       localStorage.setItem("token", res.data.token);
@@ -55,9 +55,9 @@ function Login() {
 
           <input
             type="text"
-            placeholder="Username"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setemail(e.target.value)}
             className="p-2 border-blue-400 rounded-lg w-[80%] bg-white"
           />
 

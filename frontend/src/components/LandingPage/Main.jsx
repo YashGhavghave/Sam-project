@@ -19,7 +19,7 @@ function Main() {
           withCredentials: true, // Important to send cookie
         });
 
-        setUserData(res.data.user);
+        setUserData(res.data.email);
         setLoading(false);
       } catch (err) {
         console.error("Not authenticated:", err);
@@ -44,7 +44,7 @@ function Main() {
   className="absolute top-[30vh] left-10 md:left-30 max-w-3xl ">
   <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-800 leading-tight mb-4 w-[30vw]">
     Hello, <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
-      {userData?.user}
+      {userData?.firstname}
     </span>
   </h1>
 
