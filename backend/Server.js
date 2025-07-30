@@ -12,6 +12,7 @@ import userroute from './routes/register.route.js'
 import logoutuser from './routes/logout.route.js'
 import profileroute from './routes/profile.route.js'
 import loginuser from './routes/login.route.js'
+import upload from './routes/upload.route.js'
 
 dotenvx.config()
 
@@ -31,8 +32,9 @@ app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true
 }));
-app.use(express.json());
+app.use(express.json({limit:'50mb'}));
 app.use(cookieParser());
+app.use(express.urlencoded({extended:false}))
 
 
 app.use('/', userroute) 
@@ -42,6 +44,8 @@ app.use('/', logoutuser)
 app.use('/', profileroute)
 
 app.use('/', loginuser)
+
+app.use('/', upload)
 
 app.listen(port, () => {
   console.log(`🚀 Server running at http://localhost:${port}`);
