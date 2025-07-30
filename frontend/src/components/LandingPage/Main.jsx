@@ -60,11 +60,11 @@ function Main() {
 </motion.div>
 
 <div className="h-[30vh] w-[40vw] bg-orange-200 absolute top-[28rem] left-[8.3rem] border-none flex justify-evenly items-center shadow-xl/20 rounded-2xl flex-col text-2xl font-normal ">
-    <p className="text-lg sm:text-xl text-gray-600 font-medium w-[35vw]">
+    <span className="text-lg sm:text-xl text-gray-600 font-medium w-[35vw]">
     Welcome to{' '}
     <span className="text-orange-500 font-semibold">Student Nest</span>
   <h1 className="text-sm text-gray-600 font-medium">   ---- We are hear to make you easy....</h1>
-  </p>
+  </span>
   <input type="text" className="w-[30vw] h-[4vh] p-4 text-lg rounded-full border-1 outline-none" placeholder="Search "/>
   <button className="px-10 text-lg font-normal bg-orange-500 rounded-full text-white py-0.5">Search</button>
 </div>
