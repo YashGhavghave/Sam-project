@@ -13,6 +13,7 @@ import logoutuser from './routes/logout.route.js'
 import profileroute from './routes/profile.route.js'
 import loginuser from './routes/login.route.js'
 import upload from './routes/upload.route.js'
+import rooms from './routes/room.route.js'
 
 dotenvx.config()
 
@@ -46,6 +47,8 @@ app.use('/', profileroute)
 app.use('/', loginuser)
 
 app.use('/', upload)
+
+app.use('/', rooms)
 
 app.listen(port, () => {
   console.log(`🚀 Server running at http://localhost:${port}`);
