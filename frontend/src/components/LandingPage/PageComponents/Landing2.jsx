@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../../Footer/Footer'
 
 function Landing2() {
     return (
@@ -27,6 +28,9 @@ function Landing2() {
                     Money Assurance
                 </div>
               
+            </div>
+            <div>
+                <Footer/>
             </div>
         </div>)
 }

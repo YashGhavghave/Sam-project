@@ -15,11 +15,15 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [image, setupload] = useState(null)
   const [description, setdesc] = useState('')
+  const [phone, setphone] = useState('')
+  const [username, setusername] = useState('')
+  const [price, setprice] = useState('')
+  const [location, setlocation] = useState('')
 
   const UploadHandler = async (e) => {
     e.preventDefault();
 
-    if (!image || !description.trim()) {
+    if (!image || !description.trim() || !phone || !username || !price || !location) {
       alert("Please ensure to fill all data fields.");
       return;
     }
@@ -27,7 +31,11 @@ export default function Navbar() {
       const data = new FormData()
       data.append('image', image)
       data.append('description', description)
-      await axios.post("http://localhost:3000/upload", 
+      data.append('phone', `+91 ${phone}`)
+      data.append('username', username)
+      data.append('location', location)
+      data.append('price', price)
+      await axios.post("http://localhost:3000/upload",
         data
       );
       alert("Upload successful!");
@@ -199,12 +207,12 @@ export default function Navbar() {
               </button>
             </div>
             <span className="text-gray-700 flex-row ">
-              <img
+              {/* <img
                 src="https://i.pinimg.com/736x/71/9c/58/719c586b0264e2a10d5706529bc7c9d5.jpg"
                 alt=""
                 className="h-[200px] w-[200px] rounded-full border-1 border-black mt-10 ml-40"
-              />
-              <div className="text-3xl text-black ml-40 mt-5">
+              /> */}
+              <div className="text-2xl text-black ml-40 mt-5">
                 {userdata?.firstname} {userdata?.lastname}
               </div>
 
@@ -216,7 +224,7 @@ export default function Navbar() {
                 encType="multipart/form-data"
                 onSubmit={UploadHandler}
               >
-                <h1 className="text-2xl font-semibold text-gray-800">Add Images</h1>
+                {/* <h1 className="text-2xl font-semibold text-gray-800">Add Images</h1> */}
 
                 <input
                   type="file"
@@ -224,10 +232,38 @@ export default function Navbar() {
                   className="border rounded-lg p-2"
                   onChange={(e) => setupload(e.target.files[0])}
                 />
+                <textarea
+                  type="text"
+                  className="h-10 w-full border rounded-lg p-1.5 resize-none"
+                  placeholder="Enter Name"
+                  value={username}
+                  onChange={(e) => setusername(e.target.value)}
+                />
 
                 <textarea
                   type="text"
-                  className="h-40 w-full border rounded-2xl p-4 resize-none"
+                  className="h-10 w-full border rounded-lg p-1.5 resize-none"
+                  placeholder="Price"
+                  value={price}
+                  onChange={(e) => setprice(e.target.value)}
+                />
+                <textarea
+                  type="text"
+                  className="h-10 w-full border rounded-lg p-1.5 resize-none"
+                  placeholder="location"
+                  value={location}
+                  onChange={(e) => setlocation(e.target.value)}
+                />
+                <textarea
+                  type="text"
+                  className="h-10 w-full border rounded-lg p-1.5 resize-none"
+                  placeholder="Phone"
+                  value={phone}
+                  onChange={(e) => setphone(e.target.value)}
+                />
+                <textarea
+                  type="text"
+                  className="h-30 w-full border rounded-lg p-4 resize-none"
                   placeholder="Description"
                   value={description}
                   onChange={(e) => setdesc(e.target.value)}
@@ -246,3 +282,5 @@ export default function Navbar() {
     </motion.nav>
   );
 }
+
+

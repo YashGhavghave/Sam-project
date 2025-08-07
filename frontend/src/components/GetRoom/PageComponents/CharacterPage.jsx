@@ -6,20 +6,21 @@ import { motion } from 'framer-motion';
 import Navbar from '../../LandingPage/PageComponents/Navbar';
 
 function CharacterPage() {
-  const { id } = useParams();
+  const { id } = useParams(); // this is the unique ID from the URL
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    const fetchOne = async () => {
+    const fetchRoomData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/roomsdata');
-        setData(response.data[parseInt(id)]);
+        const response = await axios.get('http://localhost:3000/upload');
+        const room = response.data.find((item) => String(item.id) === id); // match ID from URL
+        setData(room);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchOne();
+    fetchRoomData();
   }, [id]);
 
   if (!data) return <div className="mt-[20vh] text-center text-xl">Loading...</div>;
