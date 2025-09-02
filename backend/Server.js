@@ -30,7 +30,7 @@ const app = express();
 const port = 3000;
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://studentnest.onrender.com',
   credentials: true
 }));
 app.use(express.json({limit:'50mb'}));
