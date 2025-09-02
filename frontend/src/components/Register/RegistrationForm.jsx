@@ -13,7 +13,7 @@ function RegistrationForm() {
 
   const registerUser = async (firstname, lastname, email, pass) => {
     try {
-      const response = await axios.post('http://localhost:3000/register', {
+      const response = await axios.post('https://studentnestbackend.onrender.com/register', {
         firstname, lastname, email, pass
       });
       return response;

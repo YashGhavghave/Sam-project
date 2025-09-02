@@ -12,7 +12,7 @@ function CharacterPage() {
   useEffect(() => {
     const fetchRoomData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/upload');
+        const response = await axios.get('https://studentnestbackend.onrender.com/upload');
         const room = response.data.find((item) => String(item.id) === id); // match ID from URL
         setData(room);
       } catch (error) {

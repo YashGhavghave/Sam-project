@@ -10,7 +10,7 @@ function Cards() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/roomsdata');
+        const res = await axios.get('https://studentnestbackend.onrender.com/roomsdata');
         setData(res.data);
       } catch (err) {
         console.error('Fetch error:', err);

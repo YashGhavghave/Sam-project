@@ -15,7 +15,7 @@ function Main() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/profile", {
+        const res = await axios.get("https://studentnestbackend.onrender.com/profile", {
           withCredentials: true, // Important to send cookie
         });
 
