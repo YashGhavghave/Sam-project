@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../LandingPage/PageComponents/Navbar'
-import Page from './PageComponents/page'
+import Page from './PageComponents/Page.jsx'
 import Footer from '../Footer/Footer'
 
 
