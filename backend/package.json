@@ -1,11 +1,11 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "src/Server.js",
+  "main": "/src/Server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon Server.js"
+    "start": "nodemon /src/Server.js"
   },
   "author": "",
   "license": "ISC",
